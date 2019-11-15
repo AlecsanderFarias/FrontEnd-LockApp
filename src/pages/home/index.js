@@ -1,22 +1,20 @@
-import React from 'react';
-import { SafeAreaView } from 'react-native';
+import React, { useState } from 'react';
+import { useEffect } from 'react-redux';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import { Container, Tbutton, Tinput } from './styles';
 
-import Input from '../../components/Input';
-import Button from '../../components/Button';
+export default function Home({}) {
+  const [open, setOpen] = useState(true);
 
-import {Container } from './styles';
+  function handleClick() {
+    setOpen(!open);
+  }
 
-export default function Home() {
   return (
     <Container>
+      <Icon name="lock" size={200} color={open ? 'green' : 'red'} />
 
-
-    <Input  icon="lock" placeholder="digite seu nome"/>
-    <Button>
-      Abrir Cofre
-    </Button>
-      
-
+      <Tbutton onPress={() => handleClick()}>Abrir Cofre</Tbutton>
     </Container>
   );
 }
