@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
 import { SafeAreaView } from 'react-native';
 
+import Input from '../../components/Input';
 import Button from '../../components/Button';
 
 export const Container = styled(SafeAreaView)`
@@ -12,7 +13,13 @@ export const Container = styled(SafeAreaView)`
 `;
 
 export const Tbutton = styled(Button)`
-  margin: 10px auto;
+  margin: 20px auto;
+  width: 100%;
+`;
+
+export const TInput = styled(Input)`
+  margin-top: 40px;
+  margin-bottom: 20px;
   width: 100%;
 `;
 
@@ -20,7 +27,6 @@ export const Text = styled.Text`
   text-align: center;
   color: white;
   font-size: 20px;
-  margin-top: 20px;
-  margin-bottom: 40px;
+  margin: 20px auto;
   width: 100%;
 `;

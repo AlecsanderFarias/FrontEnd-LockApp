@@ -3,15 +3,17 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 import Home from './pages/home';
 import Config from './pages/config';
-
-const navigator = createBottomTabNavigator({
-  Home,
-  Config,
-})
-
+import Test from './pages/Test';
 
 export default createAppContainer(
-  
-    navigator
-  
+  createSwitchNavigator({
+    Navigation: createBottomTabNavigator({
+      Home,
+      Config,
+      Test,
+    }),
+  }),
+  {
+    initialRouteName: 'Navigation',
+  },
 );
