@@ -1,9 +1,6 @@
 const INITIAL_STATE = {
-  ip: null,
-  password: null,
-  state: false, // estado da lampada
-  loadingTest: false, // loading para rota de teste
-  loadingState: false, // loading para rota de pegar estado da tranca
+  ip: '',
+  password: '',
 };
 
 export default function config(state = INITIAL_STATE, action) {
@@ -11,49 +8,15 @@ export default function config(state = INITIAL_STATE, action) {
     case '@config/SET_PASSWORD': {
       const newState = {
         ...state,
-        password: action.password,
+        password: action.payload.password,
       };
       return newState;
     }
 
-    case '@config/TEST_REQUEST': {
+    case '@config/SET_IP': {
       const newState = {
         ...state,
-        loadingTest: true,
-      };
-      return newState;
-    }
-
-    case '@config/TEST_SUCCESS': {
-      const newState = {
-        ...state,
-        loadingTest: false,
-      };
-      return newState;
-    }
-
-    case '@config/STATE_REQUEST': {
-      const newState = {
-        ...state,
-        loadingState: true,
-      };
-      return newState;
-    }
-
-    case '@config/STATE_SUCCESS': {
-      const newState = {
-        ...state,
-        loadingState: false,
-      };
-      return newState;
-    }
-
-    case '@config/FAILED': {
-      const newState = {
-        ...state,
-        loadingState: false,
-        loadingAction: false,
-        loadingTest: false,
+        ip: action.payload.ip,
       };
       return newState;
     }

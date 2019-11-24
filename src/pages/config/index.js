@@ -1,15 +1,34 @@
+/* eslint-disable arrow-parens */
+/* eslint-disable react/prop-types */
 /* eslint-disable indent */
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable comma-dangle */
-import React, { useState } from 'react';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 
+import React, { useState, useEffect } from 'react';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import { useDispatch, useSelector } from 'react-redux';
+import { Alert } from 'react-native';
 import { Container, Tbutton, TInput } from './styles';
+import { updatePassword } from '../../store/modules/config/actions';
 
 export default function config() {
-  const [value, setValue] = useState(true);
+  const dispatch = useDispatch();
+  const [value, setValue] = useState('');
+  const password = useSelector(state => state.config.password);
 
-  function handleClick() {}
+  useEffect(() => {
+    setValue(password);
+  }, [password]);
+
+  function handleClick() {
+    if (value.length < 5) {
+      Alert.alert('Erro', 'A senha deve ter no minimo 6 caracteres');
+    } else if (value === password) {
+      Alert.alert('Erro', 'A senha deve ser diferente da anterior');
+    } else {
+      dispatch(updatePassword(value));
+    }
+  }
 
   return (
     <Container>
@@ -18,11 +37,11 @@ export default function config() {
       <TInput
         icon="lock"
         value={value}
-        onChangeText={(text) => setValue(text)}
+        onChangeText={text => setValue(text)}
         placeholder="Senha da casa"
       />
 
-      <Tbutton onPress={() => handleClick()}>Definir senha da casa</Tbutton>
+      <Tbutton onPress={() => handleClick()}>Mudar senha</Tbutton>
     </Container>
   );
 }
